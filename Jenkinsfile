@@ -5,7 +5,6 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                sh 'python --version'
                 sh 'pytest -v --cov'
             }
         }
