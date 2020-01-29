@@ -1,8 +1,10 @@
 import pytest
 from SRC.Main import *
+import mock
 
+# ==================================================================
 # Test for displaying menu
-def test_displayMenu():
+def test_display_menu():
     menu = display_menu()
     assert menu == ("MAIN MENU\n" 
                     "=========\n"
@@ -12,18 +14,54 @@ def test_displayMenu():
                     "[4] Configure current maze\n\n"
                     "[0] Exit Maze\n")
 
-# TODO: Make unit tests for readFile(), displayMaze() , playGame() & configureMaze() once these functions are done
-@pytest.mark.parametrize("option",[(1), (2), (3), (4), (5), (0), (-2), (-10), ('letters'), ('$$^@!')])
-def test_SelectOption(option):
-    # if option == 1:
-    #     assert menu_function(1) == <return function for 1>
-    # elif option == 2:
-    #     assert menu_function(2) == <return function for 2>
-    # elif option == 3:
-    #     assert menu_function(3) == <return function for 3>
-    # elif option == 4:
-    #     assert menu_function(4) == <return function for 4>
-    if option == 0:
-        assert menu_function(0) == "Thanks for playing Maze!"
-    else:
-        assert menu_function(option) == "Invalid option. Please try again!"
+# ==================================================================
+# TEST FOR GENERAL OPTIONS
+# Test for invalid options
+def test_select_invalid_option_5():
+    with mock.patch('builtins.input', return_value=5):
+        assert menu_function() == "Invalid option. Please try again!"
+
+def test_select_invalid_option_letters():
+    with mock.patch('builtins.input', return_value='letters'):
+        assert menu_function() == "Invalid option. Please try again!"
+
+def test_select_invalid_option_letters():
+    with mock.patch('builtins.input', return_value="$$@#%"):
+        assert menu_function() == "Invalid option. Please try again!"
+
+# Test for error message
+def test_select_option_0():
+    with mock.patch('builtins.input', return_value=0):
+        assert menu_function() == "Thanks for playing Maze!"
+
+# ==================================================================
+### Tests for reading file
+@pytest.mark.parametrize("filename", [("maze.csv")])
+def test_select_option_1(filename):
+    with mock.patch('builtins.input', return_value=filename):
+        assert menu_function() != ""
+
+@pytest.mark.parametrize("filename", [("maze.csv")])
+def test_read_maze(filename):
+    maze_list = read_file(filename)
+    assert maze_list != []
+    
+@pytest.mark.parametrize("filename", [("maze")])
+def test_cannot_read_maze(filename):
+    error = read_file(filename)
+    assert error == "Invalid file type!"
+
+@pytest.mark.parametrize("filename", [("maze-empty.csv")])
+def test_no_maze_found(filename):
+    error = read_file(filename)
+    assert error == "No maze found in file!"
+
+@pytest.mark.parametrize("filename", [("maze.csv")])
+def test_store_maze_have_start_end(filename):
+    maze_list = read_file(filename)
+    assert store_start_end(maze_list) != []
+
+@pytest.mark.parametrize("filename", [("maze-no-start-end.csv")])
+def test_store_maze_no_start_end(filename):
+    maze_list = read_file(filename)
+    assert store_start_end(maze_list) == "Maze does not have a start or end point."
