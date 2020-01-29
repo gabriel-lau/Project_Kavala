@@ -2,14 +2,19 @@ pipeline {
     agent {
         docker 
         { 
-            image 'python:3.5.1' 
+            image 'node:7-alpine' 
             } 
             }
     stages {
-        stage('build') {
+        stage('test') {
+            steps {
+                sh 'pytest -v -cov'
+            }
+        }
+        /*stage('build') {
             steps {
                 sh 'python --version'
             }
-        }
+        }*/
     }
 }
