@@ -1,5 +1,5 @@
 import pytest
-from src.main import *
+from SRC.Main import *
 
 # Test for displaying menu
 def test_displayMenu():
