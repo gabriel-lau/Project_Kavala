@@ -65,3 +65,9 @@ def test_store_maze_have_start_end(filename):
 def test_store_maze_no_start_end(filename):
     maze_list = read_file(filename)
     assert store_start_end(maze_list) == "Maze does not have a start or end point."
+
+# ==================================================================
+# Tests for view maze
+def test_select_option_2():
+    with mock.patch('builtins.input', return_value=2):
+        assert menu_function() != []

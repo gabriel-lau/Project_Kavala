@@ -24,8 +24,16 @@ def menu_function():
         read_file(filename)
         return filename
     elif menu_option == 2:
-        displayMaze()
-        # return 
+        print ("Option [2]: View maze")
+        print ("=======================================")
+        try:
+            mazeList
+        except NameError:
+            error = "No maze in memory. Load your maze file through Option 1 now!"
+            return error
+        else:
+            displayMaze(mazeList)
+            return mazeList
     elif menu_option == 3:
         playGame()
         # return
@@ -83,9 +91,10 @@ def store_start_end(mazeList):
             return row_column_list
 
 
-# # Displays the maze
-# def displayMaze():
-#     return True
+# Displays the maze
+def displayMaze(mazeList):
+    print('\n'.join([str(lst) for lst in mazeList]))
+    return mazeList
 
 # # Play maze game
 # def playGame():
