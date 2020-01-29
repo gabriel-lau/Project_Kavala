@@ -6,7 +6,7 @@ pipeline {
         stage('test') {
             steps {
                 sh 'python --version'
-                sh 'pytest -v --cov'
+                sh 'pytest -v --cov Test'
             }
         }
         /*stage('build') {
