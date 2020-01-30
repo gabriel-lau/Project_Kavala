@@ -5,4 +5,4 @@ WORKDIR /opt/app
 RUN pip install -r requirements.txt
 COPY . /opt/app
 
-ENV DISPLAY=:99
+ENV PYTHONPATH=../
