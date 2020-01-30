@@ -1,6 +1,7 @@
 import csv
+maze_list = []
 
-# Display main menu
+# Display menu
 def display_menu():
     menu = ("MAIN MENU\n" 
             "=========\n"
@@ -14,99 +15,65 @@ def display_menu():
     return menu
 
 
-def menu_function():
-    menu_option = input("Enter your option: ")
-    if menu_option == 1:
-        print()
-        print ("Option [1] Read and load maze from file")
-        print ("=======================================")
-        filename = input("Enter the name of the data file: ")
-        read_file(filename)
-        return filename
-    elif menu_option == 2:
-        print ("Option [2]: View maze")
-        print ("=======================================")
-        try:
-            mazeList
-        except NameError:
-            error = "No maze in memory. Load your maze file through Option 1 now!"
-            return error
-        else:
-            displayMaze(mazeList)
-            return mazeList
-    elif menu_option == 3:
-        playGame()
-        # return
-    elif menu_option == 4:
-        configureMaze()
-        # return 
-    elif menu_option == 0:
-        print ("Thanks for playing Maze!")
-        return "Thanks for playing Maze!"
-    else:
-        print ("Invalid option. Please try again!")
-        return "Invalid option. Please try again!"
+# [1] Read and load file
+def read_file(maze_list):
+    print ("Option [1]: Read and load maze from file")
+    print ("==========================================")
+    filename = input("Enter the name of the data file: ")
 
-
-# Reads maze file in .csv format
-def read_file(filename):
-    mazeList = []
     if '.csv' in filename:
         with open (filename) as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
-                mazeList.append(row)
+                maze_list.append(row)
 
-        if len(mazeList) != 0:
-            store_start_end(mazeList)
-            print("Number of lines read: ", len(mazeList))
-            return mazeList
+        if len(maze_list) != 0:
+            store_start_end(maze_list)
+            print("Number of lines read: ", len(maze_list), "\n")
         else:
-            error = "No maze found in file!"
-            print (error)
+            print("No maze found in file!")
+
     else:
-        error = "Invalid file type!"
-        print(error)
-    return error
+        print("Invalid file type!")
+    
+    return maze_list
 
 
-# Store row and columns of start and end
-def store_start_end(mazeList):
-    for list in mazeList:
-        for index, list in enumerate(mazeList):
+def store_start_end(maze_list):
+    for list in maze_list:
+        for index, list in enumerate(maze_list):
             if 'A' in list:
                 row_A = index + 1
-                column_A = mazeList[index].index('A') + 1
+                column_A = maze_list[index].index('A') + 1
             if 'B' in list:
                 row_B = index + 1
-                column_B = mazeList[index].index('B') + 1
-
-        try:
-            row_A and row_B
-        except NameError:
-            error = "Maze does not have a start or end point."
-            return error
-        else:
-            row_column_list = [[row_A, column_A], [row_B, column_B]]
-            return row_column_list
+                column_B = maze_list[index].index('B') + 1
+    try:
+        row_A and row_B
+    except NameError:
+        print("Maze does not have a start or end point.")
+    else:
+        row_column_list = [[row_A, column_A], [row_B, column_B]]
+        return row_column_list
 
 
-# Displays the maze
-def displayMaze(mazeList):
-    print('\n'.join([str(lst) for lst in mazeList]))
-    return mazeList
+# [2] Display maze
+def display_maze(maze_list):
+    if maze_list == []:
+        print("No maze in memory. Load your maze file through Option 1!")
+    else:    
+        print ("Option [2]: View maze")
+        print ("==========================================")
+        print('\n'.join([str(lst) for lst in maze_list]))
 
-# # Play maze game
-# def playGame():
-#     return True
+    return maze_list
 
-# # Configure maze
-# def configureMaze():
-#     return True
 
-# Global -------------------------------------
-# flag = menu_function()
-# while flag != "Thanks for playing Maze!":
-#     display_menu()
-#     menu_function()
-#     print()
+# [3] Play maze game
+def play_game():
+    return True
+
+
+# [4] Configure maze
+def configure_maze():
+    return True
