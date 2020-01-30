@@ -18,3 +18,16 @@ def test_display_menu():
                     "[4] Configure current maze\n\n"
                     "[0] Exit Maze\n")
 
+
+# ==================================================================
+# Test for looping menu
+# TODO: This is for the loop main() function that does NOT work !!!!
+
+def test_looping_menu_exit():
+    with mock.patch('builtins.input', return_value='0'):
+        assert main([]) == False
+
+# @pytest.mark.parametrize("return_value", [('1'), ('2'), ('3'), ('4')])
+# def test_looping_menu_continue(return_value):
+#     with mock.patch('builtins.input', return_value=return_value):
+#         assert main([]) ==

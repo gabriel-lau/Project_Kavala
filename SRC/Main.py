@@ -77,3 +77,36 @@ def play_game():
 # [4] Configure maze
 def configure_maze():
     return True
+
+
+# MAIN FUNCTION 
+def main(maze_list):
+    while True:
+        option = display_menu()
+        option = input("Enter your option: ")
+        print()
+
+        if option.isdigit():
+            option = int(option)
+
+            if option == 1:
+                maze_list = []
+                read_file(maze_list)
+            elif option == 2:
+                maze_list = display_maze(maze_list)
+            elif option == 3:
+                play_game()
+            elif option == 4:
+                configure_maze()
+            elif option == 0:
+                print ("Thanks for playing Maze!")
+                return False
+            else:
+                print ("Invalid option. Please try again!")
+        else:
+            print ("Invalid option. Please try again!")
+            
+        print()
+
+# TODO: For some reason there is an error when you try to run the main() function!!!
+# main(maze_list)
