@@ -449,9 +449,10 @@ def main(maze_list):
             print ("Invalid option. Please try again!")
             
         print()
+        
 # TODO: For some reason there is an error when you try to run the main() function!!!
 #Additionally, since some functions for configure maze require a callback to main(maze_list)
 #They are commented as well
-#main(maze_list)
+main(maze_list)
 
 
