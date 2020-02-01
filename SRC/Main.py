@@ -76,7 +76,31 @@ def play_game():
 
 # [4] Configure maze
 def configure_maze():
+    #To Display configuring maze menu
+    print(displayconfigure_maze_menu(maze_list))
+    option = input("Enter your option: ")
+    
     return True
+
+# [4] 1 Display Configure maze menu
+def displayconfigure_maze_menu(maze_list):
+    if(display_maze(maze_list) == []):
+        return main(maze_list)
+    else:
+        Statement = """
+
+        CONFIGURATION MENU
+        ==================
+        [1] Create wall
+        [2] Create passageway
+        [3] Create start point
+        [4] Create end point
+
+        [0]    Exit to Main Menu
+
+        """
+        return Statement
+    
 
 
 # MAIN FUNCTION 
@@ -109,4 +133,4 @@ def main(maze_list):
         print()
 
 # TODO: For some reason there is an error when you try to run the main() function!!!
-# main(maze_list)
+#main(maze_list)
