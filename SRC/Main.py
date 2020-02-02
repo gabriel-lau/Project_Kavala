@@ -10,7 +10,6 @@ def display_menu():
             "[3] Play maze game\n"
             "[4] Configure current maze\n\n"
             "[0] Exit Maze\n")
-
     print(menu)
     return menu
 
@@ -75,31 +74,38 @@ def play_game():
 
 
 # [4] Configure maze
-def configure_maze():
+def configure_maze(maze_list):
     #To Display configuring maze menu
-    print(displayconfigure_maze_menu(maze_list))
+    displayconfigure_maze_menu(maze_list)
     option = input("Enter your option: ")
+    print("==========================================\n\n")
     
     return True
 
 # [4] 1 Display Configure maze menu
 def displayconfigure_maze_menu(maze_list):
-    if(display_maze(maze_list) == []):
-        return main(maze_list)
+    #When user has not loaded the maze list
+    if(maze_list == []):
+        print("No maze in memory. Load your maze file through Option 1!\n")
+        #Have to comment this out when running pytest
+        #main(maze_list)
+        return False
     else:
-        Statement = """
+        #Display configure maze menu
+        Statement =(
+        "\nCONFIGURATION MENU\n"
+        "==================\n"
+        "[1] Create wall\n"
+        "[2] Create passageway\n"
+        "[3] Create start point\n"
+        "[4] Create end point\n\n"
 
-        CONFIGURATION MENU
-        ==================
-        [1] Create wall
-        [2] Create passageway
-        [3] Create start point
-        [4] Create end point
+        "[0] Exit to Main Menu\n")
+        print(Statement)
+        return True
+    
+# [4] 2 Display input for when to create item in maze
 
-        [0]    Exit to Main Menu
-
-        """
-        return Statement
     
 
 
@@ -121,7 +127,7 @@ def main(maze_list):
             elif option == 3:
                 play_game()
             elif option == 4:
-                configure_maze()
+                configure_maze(maze_list)  
             elif option == 0:
                 print ("Thanks for playing Maze!")
                 return False
@@ -131,6 +137,5 @@ def main(maze_list):
             print ("Invalid option. Please try again!")
             
         print()
-
 # TODO: For some reason there is an error when you try to run the main() function!!!
 #main(maze_list)
