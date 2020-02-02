@@ -104,6 +104,7 @@ def play_game(maze_list): #Load Maze
         print('\n'.join([str(lst) for lst in maze_list]))
         print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
         print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
+    
     movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
     start_coords = (row_A,column_A)
 
@@ -213,6 +214,7 @@ def configure_maze(maze_list):
                 
     return True
 
+
 # [4] 1 Display Configure maze menu
 def displayconfigure_maze_menu(maze_list):
     #When user has not loaded the maze list
@@ -260,7 +262,6 @@ def exitConfigure():
     #main(maze_list)
     return statement
     
-
 # [4] 4 Return to Config menu
 def returnConfigure(maze_list):
     statement = "\nReturning to configuration menu"
@@ -270,7 +271,6 @@ def returnConfigure(maze_list):
     #configure_maze(maze_list)
     return statement
     
-
 # [4] 5 Return to Main menu
 def returnMain(maze_list):
     statement = "\nReturning to Main menu"
@@ -378,8 +378,7 @@ def CheckForChangeA(maze_list, first, second):
                 index = str(maze_list.index(row)) + ", " + str(row.index("A"))
                 maze_list[int(index[0])][int(index[-1])] = "B"
                 return "\n Your end point and start point exchanged places!"
-        
-        
+             
 # [4] 9 Change Coordinate to B
 def ChangeCoordToB(maze_list, coor):
     firstCoor = int(coor[0]) - 1
