@@ -83,6 +83,7 @@ def play_game(maze_list):
             if 'B' in list:
                 row_B = index + 1
                 column_B = maze_list[index].index('B') + 1
+                break
 
     if maze_list == []:
         print("No maze in memory. Load your maze file through Option 1!")
@@ -90,10 +91,10 @@ def play_game(maze_list):
         print ("Option [3]: Play maze game")
         print ("==========================================")
         print('\n'.join([str(lst) for lst in maze_list]))
-        print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')')
+        print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
         print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
-        #print('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU:" )
-        movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: "))
+        return False # Comment this line to run the game
+        movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
         if movement == 'M':
             print("movement is M")
             return main(maze_list)
@@ -112,8 +113,8 @@ def play_game(maze_list):
         else:
         #if movement != 'W' or 'A' or 'S' or 'D' or 'M':
             print("Invalid Character. Please try again!")
-            #movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: "))
             print ("HI")
+            return play_game(maze_list)
             #return movement 
 
     return maze_list
@@ -141,29 +142,6 @@ def main(maze_list):
                 maze_list = display_maze(maze_list)
             elif option == 3:
                 play_game(maze_list)
-                # movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: "))
-                # if movement == 'M':
-                #     print("movement is M")
-                #     return main(maze_list)
-                # elif movement == 'W':
-                #     print("movement is W")
-                #     #return main(maze_list)
-                # elif movement == 'A':
-                #     print("movement is A")
-                #     #return main(maze_list)
-                # elif movement == 'S':
-                #     print("movement is S")
-                #     #return main(maze_list)
-                # elif movement == 'D':
-                #     print("movement is D")
-                #     #return main(maze_list)
-                # else:
-                # #if movement != 'W' or 'A' or 'S' or 'D' or 'M':
-                #     print("Invalid Character. Please try again!")
-                #     movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: "))
-                #     print ("HI")
-                #     return movement 
-                #return movement == input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: "))
                 return play_game(maze_list)
             elif option == 4:
                 configure_maze()
@@ -178,4 +156,4 @@ def main(maze_list):
         print()
 
 # TODO: For some reason there is an error when you try to run the main() function!!!
-main(maze_list)
+#main(maze_list)
