@@ -78,8 +78,11 @@ def configure_maze(maze_list):
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
     option = input("Enter your option: ")
-    print("==========================================\n\n")
-    coorOpt = input(displayConfigureInput(maze_list))
+    print("\n")
+    if(option == "0"):
+        exitConfigure()
+    else: 
+        coorOpt = input(displayConfigureInput(maze_list))
     
     return True
 
@@ -114,6 +117,13 @@ def displayConfigureInput(maze_list):
     "'B' to return to Configure Menu.\n"
     "'M' to return to Main Menu: \n")
     return Statement
+
+# [4] 3 Exit Config menu
+def exitConfigure():
+    #To exit from config menu
+    #main(maze_list)
+    statement = "Exited from Configuration Menu"
+    return statement
     
 
 

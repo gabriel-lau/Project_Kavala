@@ -17,3 +17,7 @@ def test_ConfigurationOptionsSelected():
     "'B' to return to Configure Menu.\n"
     "'M' to return to Main Menu: \n")
     assert displayConfigureInput(maze_normal) == Statement
+
+def test_ConfigurationExit():
+    statement = "Exited from Configuration Menu"
+    assert statement
