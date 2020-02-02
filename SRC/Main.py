@@ -79,6 +79,7 @@ def configure_maze(maze_list):
     displayconfigure_maze_menu(maze_list)
     option = input("Enter your option: ")
     print("==========================================\n\n")
+    coorOpt = input(displayConfigureInput(maze_list))
     
     return True
 
@@ -105,7 +106,14 @@ def displayconfigure_maze_menu(maze_list):
         return True
     
 # [4] 2 Display input for when to create item in maze
-
+def displayConfigureInput(maze_list):
+    #To display the maze list first
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
+    "'B' to return to Configure Menu.\n"
+    "'M' to return to Main Menu: \n")
+    return Statement
     
 
 
