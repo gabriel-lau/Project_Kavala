@@ -15,9 +15,13 @@ def test_ConfigurationOptionMethodFailed():
 def test_ConfigurationOptionsSelected():
     Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
     "'B' to return to Configure Menu.\n"
-    "'M' to return to Main Menu: \n")
+    "'M' to return to Main Menu: ")
     assert displayConfigureInput(maze_normal) == Statement
 
 def test_ConfigurationExit():
-    statement = "Exited from Configuration Menu"
+    statement = "\nExited from Configuration Menu"
+    assert statement
+
+def test_ConfigurationReturn():
+    statement = "\nReturning to configuration menu"
     assert statement

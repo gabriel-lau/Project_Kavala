@@ -83,6 +83,8 @@ def configure_maze(maze_list):
         exitConfigure()
     else: 
         coorOpt = input(displayConfigureInput(maze_list))
+        if(coorOpt == "B"):
+            returnConfigure(maze_list)
     
     return True
 
@@ -115,14 +117,22 @@ def displayConfigureInput(maze_list):
     print('\n')
     Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
     "'B' to return to Configure Menu.\n"
-    "'M' to return to Main Menu: \n")
+    "'M' to return to Main Menu: ")
     return Statement
 
 # [4] 3 Exit Config menu
 def exitConfigure():
     #To exit from config menu
+    statement = "\nExited from Configuration Menu"
+    print(statement)
     #main(maze_list)
-    statement = "Exited from Configuration Menu"
+    return statement
+
+# [4] 4 Return to Config menu
+def returnConfigure(maze_list):
+    statement = "\nReturning to configuration menu"
+    print(statement)
+    configure_maze(maze_list)
     return statement
     
 
