@@ -172,6 +172,7 @@ def main(maze_list):
                 configure_maze()
             elif option == 0:
                 print ("Thanks for playing Maze!")
+                break
                 return False
             else:
                 print ("Invalid option. Please try again!")
