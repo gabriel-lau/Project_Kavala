@@ -85,15 +85,18 @@ def configure_maze(maze_list):
         exitConfigure()
     #if users do not exit to main menu
     else:
-        coorOpt = input(displayConfigureInput(maze_list))
-        if(option == "1" and coorOpt.isalpha() != True):
-            ChangeCoordToX(maze_list, coorOpt)
-        elif(option == "2" and coorOpt.isalpha() != True):
-            ChangeCoordToO(maze_list, coorOpt)
-        elif(option != "0" and coorOpt == "B"):
-            returnConfigure(maze_list)
-        elif(option != "0" and coorOpt == "M"):
-            returnMain(maze_list)
+        #To check if user does not input more than "4" or less than equal to 0
+        if(CheckOption(option)):
+            coorOpt = input(displayConfigureInput(maze_list))
+            if(CheckOption(coorOpt)):
+                if(option == "1" and coorOpt.isalpha() != True):
+                    ChangeCoordToX(maze_list, coorOpt)
+                elif(option == "2" and coorOpt.isalpha() != True):
+                    ChangeCoordToO(maze_list, coorOpt)
+                elif(option != "0" and coorOpt == "B"):
+                    returnConfigure(maze_list)
+                elif(option != "0" and coorOpt == "M"):
+                    returnMain(maze_list)
     return True
 
 # [4] 1 Display Configure maze menu
@@ -200,6 +203,14 @@ def ChangeCoordToB(maze_list, coor):
     print('\n')
     statement = "\nChanged coordinate to B"
     return statement
+
+# [4] 10 Check option == 1, 2, 3, 4
+def CheckOption(opt):
+    value = int(opt)
+    if(value <=4 and value > 0): 
+        return True
+    else:
+        return False
 
 
 
