@@ -78,12 +78,12 @@ def play_game(maze_list):
     for list in maze_list:
         for index, list in enumerate(maze_list):
             if 'A' in list:
-                row_A = index + 1
-                column_A = maze_list[index].index('A') + 1
+                row_A = index 
+                column_A = maze_list[index].index('A') 
             if 'B' in list:
-                row_B = index + 1
-                column_B = maze_list[index].index('B') + 1
-                break
+                row_B = index 
+                column_B = maze_list[index].index('B') 
+                
 
     if maze_list == []:
         print("No maze in memory. Load your maze file through Option 1!")
@@ -94,30 +94,62 @@ def play_game(maze_list):
         print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
         print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
         return False # Comment this line to run the game
-        movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
-        if movement == 'M':
-            print("movement is M")
-            return main(maze_list)
-        elif movement == 'W':
-            print("movement is W")
-            return play_game(maze_list)
-        elif movement == 'A':
-            print("movement is A")
-            return play_game(maze_list)
-        elif movement == 'S':
-            print("movement is S")
-            return play_game(maze_list)
-        elif movement == 'D':
-            print("movement is D")
-            return play_game(maze_list)
-        else:
-        #if movement != 'W' or 'A' or 'S' or 'D' or 'M':
-            print("Invalid Character. Please try again!")
-            print ("HI")
-            return play_game(maze_list)
-            #return movement 
+    movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
+    start_coords = (row_A,column_A)
 
-    return maze_list
+    #start_coords_formatted = re.split('[()]', start_coords)[1]
+
+    if movement == 'M':
+        print("movement is M")
+        return main(maze_list)
+    elif movement == 'W':
+        if maze_list[start_coords[0]-1][start_coords[1]] == 'B':
+            print("Congrats!")
+            quit()
+        if maze_list[start_coords[0]-1][start_coords[1]] == 'O' or maze_list[start_coords[0]-1][start_coords[1]] == 'B':
+            maze_list[start_coords[0]][start_coords[1]] = 'O'
+            maze_list[start_coords[0]-1][start_coords[1]] = 'A'
+        else:
+            print("Invalid move"+"\n")
+        return play_game(maze_list)
+    elif movement == 'A':
+        if maze_list[start_coords[0]][start_coords[1]-1] == 'B':
+            print("Congrats!")
+            quit()
+        if maze_list[start_coords[0]][start_coords[1]-1] == 'O' or maze_list[start_coords[0]][start_coords[1]-1] == 'B':
+            maze_list[start_coords[0]][start_coords[1]] = 'O'
+            maze_list[start_coords[0]][start_coords[1]-1] = 'A'
+        else:
+            print("Invalid move"+"\n")
+        return play_game(maze_list)
+    elif movement == 'S':
+        if maze_list[start_coords[0]+1][start_coords[1]] == 'B':
+            print("Congrats!")
+            quit()
+        if maze_list[start_coords[0]+1][start_coords[1]] == 'O' or maze_list[start_coords[0]+1][start_coords[1]] == 'B':
+            maze_list[start_coords[0]][start_coords[1]] = 'O'
+            maze_list[start_coords[0]+1][start_coords[1]] = 'A'
+        else:
+            print("Invalid move"+"\n")
+        return play_game(maze_list)
+    elif movement == 'D':
+        if maze_list[start_coords[0]][start_coords[1]+1] == 'B':
+            print("Congrats!")
+            quit()
+        if maze_list[start_coords[0]][start_coords[1]+1] == 'O' or maze_list[start_coords[0]][start_coords[1]+1] == 'B':
+            maze_list[start_coords[0]][start_coords[1]] = 'O'
+            maze_list[start_coords[0]][start_coords[1]+1] = 'A'
+        else:
+            print("Invalid move"+"\n")
+        return play_game(maze_list)
+    else:
+    #elif movement != 'W' or 'A' or 'S' or 'D' or 'M':
+        print("Invalid Character. Please try again!")
+        print ("HI")
+        return play_game(maze_list)
+        #return movement 
+
+    #return maze_list
 
 
 # [4] Configure maze
@@ -147,6 +179,7 @@ def main(maze_list):
                 configure_maze()
             elif option == 0:
                 print ("Thanks for playing Maze!")
+                break
                 return False
             else:
                 print ("Invalid option. Please try again!")
