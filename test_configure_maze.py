@@ -30,6 +30,10 @@ def test_MainReturn():
     statement = "\nReturning to Main menu"
     assert statement
 
-def test_ChangeCoordinate():
+def test_ChangeCoordinatetoX():
     statement = "\nChanged coordinate to X"
+    assert statement
+
+def test_ChangeCoordinatetoO():
+    statement = "\nChanged coordinate to O"
     assert statement

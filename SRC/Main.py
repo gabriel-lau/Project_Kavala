@@ -83,11 +83,13 @@ def configure_maze(maze_list):
         exitConfigure()
     else:
         coorOpt = input(displayConfigureInput(maze_list))
-        if(option == "1"):
+        if(option == "1" and coorOpt.isalpha() != True):
             ChangeCoordToX(maze_list, coorOpt)
-        elif(coorOpt == "B"):
+        elif(option == "2" and coorOpt.isalpha() != True):
+            ChangeCoordToO(maze_list, coorOpt)
+        elif(option != "0" and coorOpt == "B"):
             returnConfigure(maze_list)
-        elif(coorOpt == "M"):
+        elif(option != "0" and coorOpt == "M"):
             returnMain(maze_list)
     return True
 
@@ -156,6 +158,19 @@ def ChangeCoordToX(maze_list, coor):
     statement = "\nChanged coordinate to X"
     return statement
 
+# [4] 7 Change Coordinate to O
+def ChangeCoordToO(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> O")
+    maze_list[firstCoor][secondCoor] = "O"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to O"
+    return statement
+
+
+
 
 # MAIN FUNCTION 
 def main(maze_list):
@@ -186,4 +201,4 @@ def main(maze_list):
             
         print()
 # TODO: For some reason there is an error when you try to run the main() function!!!
-#main(maze_list)
+main(maze_list)
