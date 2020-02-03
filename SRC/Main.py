@@ -81,13 +81,14 @@ def configure_maze(maze_list):
     print("\n")
     if(option == "0"):
         exitConfigure()
-    else: 
+    else:
         coorOpt = input(displayConfigureInput(maze_list))
-        if(coorOpt == "B"):
+        if(option == "1"):
+            ChangeCoordToX(maze_list, coorOpt)
+        elif(coorOpt == "B"):
             returnConfigure(maze_list)
         elif(coorOpt == "M"):
             returnMain(maze_list)
-    
     return True
 
 # [4] 1 Display Configure maze menu
@@ -143,7 +144,17 @@ def returnMain(maze_list):
     print(statement)
     #main(maze_list)
     return statement
-    
+
+# [4] 6 Change Coordinate to X
+def ChangeCoordToX(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> X")
+    maze_list[firstCoor][secondCoor] = "X"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to X"
+    return statement
 
 
 # MAIN FUNCTION 

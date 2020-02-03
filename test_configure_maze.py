@@ -29,3 +29,7 @@ def test_ConfigurationReturn():
 def test_MainReturn():
     statement = "\nReturning to Main menu"
     assert statement
+
+def test_ChangeCoordinate():
+    statement = "\nChanged coordinate to X"
+    assert statement
