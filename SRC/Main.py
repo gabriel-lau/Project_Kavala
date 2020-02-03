@@ -137,14 +137,17 @@ def exitConfigure():
     #To run the app again from Main menu
     #main(maze_list)
     return statement
+    
 
 # [4] 4 Return to Config menu
 def returnConfigure(maze_list):
     statement = "\nReturning to configuration menu"
     print(statement)
     #To run the app from Configuration menu
-    configure_maze(maze_list)
+    #Required to comment this out since it has input
     return statement
+    configure_maze(maze_list)
+    
 
 # [4] 5 Return to Main menu
 def returnMain(maze_list):
@@ -187,6 +190,17 @@ def ChangeCoordToA(maze_list, coor):
     statement = "\nChanged coordinate to A"
     return statement
 
+# [4] 9 Change Coordinate to B
+def ChangeCoordToB(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> B")
+    maze_list[firstCoor][secondCoor] = "B"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to B"
+    return statement
+
 
 
 
@@ -219,4 +233,7 @@ def main(maze_list):
             
         print()
 # TODO: For some reason there is an error when you try to run the main() function!!!
+#Additionally, since some functions for configure maze require a callback to main(maze_list)
+#They are commented as well
 #main(maze_list)
+

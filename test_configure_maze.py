@@ -5,6 +5,7 @@ import io
 
 maze_normal = [['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'], ['X', 'O', 'O', 'O', 'X', 'O', 'A', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'O', 'O', 'X', 'X'], ['X', 'B', 'X', 'X', 'X', 'X', 'X', 'X']]
 no_maze = []
+coor = "2, 3"
 
 def test_ConfigurationOptionMethod():
     assert displayconfigure_maze_menu(maze_normal) == True
@@ -20,24 +21,28 @@ def test_ConfigurationOptionsSelected():
 
 def test_ConfigurationExit():
     statement = "\nExited from Configuration Menu"
-    assert statement
+    assert exitConfigure() == statement
 
 def test_ConfigurationReturn():
     statement = "\nReturning to configuration menu"
-    assert statement
+    assert returnConfigure(maze_normal) == statement
 
 def test_MainReturn():
     statement = "\nReturning to Main menu"
-    assert statement
+    assert returnMain(maze_normal) == statement
 
 def test_ChangeCoordinatetoX():
     statement = "\nChanged coordinate to X"
-    assert statement
+    assert ChangeCoordToX(maze_normal, coor) == statement
 
 def test_ChangeCoordinatetoO():
     statement = "\nChanged coordinate to O"
-    assert statement
+    assert ChangeCoordToO(maze_normal, coor) == statement
 
 def test_ChangeCoordinatetoA():
-    statement = "\nChanged coordinate to O"
-    assert statement
+    statement = "\nChanged coordinate to A"
+    assert ChangeCoordToA(maze_normal, coor) == statement
+
+def test_ChangeCoordinatetoB():
+    statement = "\nChanged coordinate to B"
+    assert ChangeCoordToB(maze_normal, coor) == statement
