@@ -37,3 +37,7 @@ def test_ChangeCoordinatetoX():
 def test_ChangeCoordinatetoO():
     statement = "\nChanged coordinate to O"
     assert statement
+
+def test_ChangeCoordinatetoA():
+    statement = "\nChanged coordinate to O"
+    assert statement

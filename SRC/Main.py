@@ -77,10 +77,13 @@ def play_game():
 def configure_maze(maze_list):
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
+    #Enter option for config menu
     option = input("Enter your option: ")
     print("\n")
+    #if users choose to exit to main menu
     if(option == "0"):
         exitConfigure()
+    #if users do not exit to main menu
     else:
         coorOpt = input(displayConfigureInput(maze_list))
         if(option == "1" and coorOpt.isalpha() != True):
@@ -120,6 +123,7 @@ def displayConfigureInput(maze_list):
     #To display the maze list first
     print('\n'.join([str(lst) for lst in maze_list]))
     print('\n')
+    #Require user to enter coordinate or exit
     Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
     "'B' to return to Configure Menu.\n"
     "'M' to return to Main Menu: ")
@@ -130,6 +134,7 @@ def exitConfigure():
     #To exit from config menu
     statement = "\nExited from Configuration Menu"
     print(statement)
+    #To run the app again from Main menu
     #main(maze_list)
     return statement
 
@@ -137,6 +142,7 @@ def exitConfigure():
 def returnConfigure(maze_list):
     statement = "\nReturning to configuration menu"
     print(statement)
+    #To run the app from Configuration menu
     configure_maze(maze_list)
     return statement
 
@@ -144,6 +150,7 @@ def returnConfigure(maze_list):
 def returnMain(maze_list):
     statement = "\nReturning to Main menu"
     print(statement)
+    #To run the app again from Main menu
     #main(maze_list)
     return statement
 
@@ -167,6 +174,17 @@ def ChangeCoordToO(maze_list, coor):
     print('\n'.join([str(lst) for lst in maze_list]))
     print('\n')
     statement = "\nChanged coordinate to O"
+    return statement
+
+# [4] 8 Change Coordinate to A
+def ChangeCoordToA(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> A")
+    maze_list[firstCoor][secondCoor] = "A"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to A"
     return statement
 
 
@@ -201,4 +219,4 @@ def main(maze_list):
             
         print()
 # TODO: For some reason there is an error when you try to run the main() function!!!
-main(maze_list)
+#main(maze_list)
