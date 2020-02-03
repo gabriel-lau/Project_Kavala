@@ -25,3 +25,7 @@ def test_ConfigurationExit():
 def test_ConfigurationReturn():
     statement = "\nReturning to configuration menu"
     assert statement
+
+def test_MainReturn():
+    statement = "\nReturning to Main menu"
+    assert statement

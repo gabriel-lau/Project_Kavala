@@ -85,6 +85,8 @@ def configure_maze(maze_list):
         coorOpt = input(displayConfigureInput(maze_list))
         if(coorOpt == "B"):
             returnConfigure(maze_list)
+        elif(coorOpt == "M"):
+            returnMain(maze_list)
     
     return True
 
@@ -133,6 +135,13 @@ def returnConfigure(maze_list):
     statement = "\nReturning to configuration menu"
     print(statement)
     configure_maze(maze_list)
+    return statement
+
+# [4] 5 Return to Main menu
+def returnMain(maze_list):
+    statement = "\nReturning to Main menu"
+    print(statement)
+    #main(maze_list)
     return statement
     
 
