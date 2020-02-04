@@ -88,15 +88,15 @@ def configure_maze(maze_list):
         #To check if user does not input more than "4" or less than equal to 0
         if(CheckOption(option)):
             coorOpt = input(displayConfigureInput(maze_list))
-            if(CheckOption(coorOpt)):
-                if(option == "1" and coorOpt.isalpha() != True):
-                    ChangeCoordToX(maze_list, coorOpt)
-                elif(option == "2" and coorOpt.isalpha() != True):
-                    ChangeCoordToO(maze_list, coorOpt)
-                elif(option != "0" and coorOpt == "B"):
-                    returnConfigure(maze_list)
-                elif(option != "0" and coorOpt == "M"):
-                    returnMain(maze_list)
+            if(option == "1" and coorOpt.isalpha() != True):
+                ChangeCoordToX(maze_list, coorOpt)
+            elif(option == "2" and coorOpt.isalpha() != True):
+                ChangeCoordToO(maze_list, coorOpt)
+            elif(option != "0" and coorOpt == "B"):
+                returnConfigure(maze_list)
+            elif(option != "0" and coorOpt == "M"):
+                returnMain(maze_list)
+                
     return True
 
 # [4] 1 Display Configure maze menu
@@ -175,12 +175,39 @@ def ChangeCoordToX(maze_list, coor):
 def ChangeCoordToO(maze_list, coor):
     firstCoor = int(coor[0]) - 1
     secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeO(maze_list, firstCoor, secondCoor))
     print("Changed " + maze_list[firstCoor][secondCoor] + "-> O")
     maze_list[firstCoor][secondCoor] = "O"
     print('\n'.join([str(lst) for lst in maze_list]))
     print('\n')
     statement = "\nChanged coordinate to O"
     return statement
+
+# [4] 7.1 Check when changing Coordinate to O
+def CheckForChangeO(maze_list, first, second):
+    item = maze_list[first][second]
+    #when the chosen change is a start/end point
+    if(item == "A" or item == "B"):
+        if(item == "A"):
+            if(maze_list[first-1][second] == "X"):
+                maze_list[first-1][second] = "A"
+            elif(maze_list[first][second-1] == "X"):
+                maze_list[first][second-1] = "A"
+            elif(maze_list[first][second+1] == "X"):
+                maze_list[first][second+1] = "A"
+            elif(maze_list[first+1][second] == "X"):
+                maze_list[first+1][second] = "A"
+            return "\nThe selected coordinate start point has been changed"
+        else:
+            if(maze_list[first-1][second] == "X"):
+                maze_list[first-1][second] = "B"
+            elif(maze_list[first][second-1] == "X"):
+                maze_list[first][second-1] = "B"
+            elif(maze_list[first][second+1] == "X"):
+                maze_list[first][second+1] = "B"
+            elif(maze_list[first+1][second] == "X"):
+                maze_list[first+1][second] = "B"
+            return "\nThe selected coordinate end point has been changed"
 
 # [4] 8 Change Coordinate to A
 def ChangeCoordToA(maze_list, coor):

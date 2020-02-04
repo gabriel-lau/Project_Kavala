@@ -8,12 +8,16 @@ no_maze = []
 coor = "2, 3"
 opt = "4"
 optFail = "5"
+firstA = 1
+secondA = 6
+firstB = 7
+secondB = 1
 
 #Check if there is maze, thus display config menu
 def test_ConfigurationOptionMethod():
     assert displayconfigure_maze_menu(maze_normal) == True
 
-#Check if there is no maze
+#Check if there is no maze (Failing test case)
 def test_ConfigurationOptionMethodFailed():
     assert displayconfigure_maze_menu(no_maze) == False
 
@@ -48,6 +52,17 @@ def test_ChangeCoordinatetoX():
 def test_ChangeCoordinatetoO():
     statement = "\nChanged coordinate to O"
     assert ChangeCoordToO(maze_normal, coor) == statement
+
+#When the selected coordinate is A for changing to O
+def test_ChecksForChangetoOCaseA():
+    statement = "\nThe selected coordinate start point has been changed"
+    #firstA and secondA are the coordinates to "A" in maze_normal
+    assert CheckForChangeO(maze_normal, firstA, secondA) == statement
+
+#When the selected coordinate is B for changing to O
+def test_ChecksForChangetoOCaseB():
+    statement = "\nThe selected coordinate end point has been changed"
+    assert CheckForChangeO(maze_normal, firstB, secondB) == statement
 
 #Check if item of coordinate 'coor' changes to A
 def test_ChangeCoordinatetoA():
