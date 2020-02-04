@@ -12,6 +12,8 @@ firstA = 1
 secondA = 6
 firstB = 7
 secondB = 1
+itemCheck = "X"
+itemChange = "A"
 
 #Check if there is maze, thus display config menu
 def test_ConfigurationOptionMethod():
@@ -48,19 +50,30 @@ def test_ChangeCoordinatetoX():
     statement = "\nChanged coordinate to X"
     assert ChangeCoordToX(maze_normal, coor) == statement
 
+#When the selected coordinate is A for changing to X
+def test_ChecksForChangeXCaseA():
+    statement = "\nThe selected coordinate start point has been changed"
+    #firstA and secondA are the coordinates to "A" in maze_normal
+    assert CheckForChangeO(maze_normal, firstA, secondA) == statement
+
+#When the selected coordinate is B for changing to X
+def test_ChecksForChangeXCaseB():
+    statement = "\nThe selected coordinate end point has been changed"
+    assert CheckForChangeO(maze_normal, firstB, secondB) == statement
+
 #Check if item of coordinate 'coor' changes to O
 def test_ChangeCoordinatetoO():
     statement = "\nChanged coordinate to O"
     assert ChangeCoordToO(maze_normal, coor) == statement
 
 #When the selected coordinate is A for changing to O
-def test_ChecksForChangetoOCaseA():
+def test_ChecksForChangeOCaseA():
     statement = "\nThe selected coordinate start point has been changed"
     #firstA and secondA are the coordinates to "A" in maze_normal
     assert CheckForChangeO(maze_normal, firstA, secondA) == statement
 
 #When the selected coordinate is B for changing to O
-def test_ChecksForChangetoOCaseB():
+def test_ChecksForChangeOCaseB():
     statement = "\nThe selected coordinate end point has been changed"
     assert CheckForChangeO(maze_normal, firstB, secondB) == statement
 
@@ -81,3 +94,8 @@ def test_CheckOpt():
 #Check if option inputted is less than equal to 0 or more than 4 (Failling test case)
 def test_CheckOptFail():
     assert CheckOption(optFail) == False
+
+#Check around a maze item function
+#itemCheck = item to find around the coordinated item
+def test_CheckAroundMazeItem():
+    assert CheckAroundItem(firstA, secondA, itemCheck, itemChange, maze_normal) == True

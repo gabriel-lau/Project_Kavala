@@ -164,12 +164,49 @@ def returnMain(maze_list):
 def ChangeCoordToX(maze_list, coor):
     firstCoor = int(coor[0]) - 1
     secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeX(maze_list, firstCoor, secondCoor))
     print("Changed " + maze_list[firstCoor][secondCoor] + "-> X")
     maze_list[firstCoor][secondCoor] = "X"
     print('\n'.join([str(lst) for lst in maze_list]))
     print('\n')
     statement = "\nChanged coordinate to X"
     return statement
+
+# [4] 6.1 Check when changing Coordinate to X
+def CheckForChangeX(maze_list, first, second):
+    item = maze_list[first][second]
+    #when the chosen change is a start/end point
+    if(item == "A" or item == "B"):
+        if(item == "A"):
+            #Look for the nearest O and finding nearest to change to start point
+            #Check if left of A is O
+            if(maze_list[first][second-1] == "O"):
+                CheckAroundItem(first, second - 1, "X", "A", maze_list)
+            #Check if top of A is O
+            elif(maze_list[first-1][second] == "O"):
+                CheckAroundItem(first-1, second, "X", "A", maze_list)
+            #Check if right of A is O
+            elif(maze_list[first][second+1] == "O"):
+                CheckAroundItem(first, second + 1, "X", "A", maze_list)
+            #Check if bot of A is O
+            elif(maze_list[first+1][second] == "O"):
+                CheckAroundItem(first+1, second, "X", "A", maze_list)
+            return "\nThe selected coordinate start point has been changed"
+        else:
+            #Look for the nearest O and finding nearest to change to start point
+            #Check if left of B is O
+            if(maze_list[first][second-1] == "O"):
+                CheckAroundItem(first, second - 1, "X", "B", maze_list)
+            #Check if top of B is O
+            elif(maze_list[first-1][second] == "O"):
+                CheckAroundItem(first-1, second, "X", "B", maze_list)
+            #Check if right of B is O
+            elif(maze_list[first][second+1] == "O"):
+                CheckAroundItem(first, second + 1, "X", "B", maze_list)
+            #Check if bot of B is O
+            elif(maze_list[first+1][second] == "O"):
+                CheckAroundItem(first+1, second + 1, "X", "B", maze_list)
+            return "\nThe selected coordinate end point has been changed"
 
 # [4] 7 Change Coordinate to O
 def ChangeCoordToO(maze_list, coor):
@@ -189,24 +226,12 @@ def CheckForChangeO(maze_list, first, second):
     #when the chosen change is a start/end point
     if(item == "A" or item == "B"):
         if(item == "A"):
-            if(maze_list[first-1][second] == "X"):
-                maze_list[first-1][second] = "A"
-            elif(maze_list[first][second-1] == "X"):
-                maze_list[first][second-1] = "A"
-            elif(maze_list[first][second+1] == "X"):
-                maze_list[first][second+1] = "A"
-            elif(maze_list[first+1][second] == "X"):
-                maze_list[first+1][second] = "A"
+            #Change the nearest X to start point
+            CheckAroundItem(first, second, "X", "A", maze_list)
             return "\nThe selected coordinate start point has been changed"
         else:
-            if(maze_list[first-1][second] == "X"):
-                maze_list[first-1][second] = "B"
-            elif(maze_list[first][second-1] == "X"):
-                maze_list[first][second-1] = "B"
-            elif(maze_list[first][second+1] == "X"):
-                maze_list[first][second+1] = "B"
-            elif(maze_list[first+1][second] == "X"):
-                maze_list[first+1][second] = "B"
+            #Change the nearest X to end point
+            CheckAroundItem(first, second, "X", "B", maze_list)
             return "\nThe selected coordinate end point has been changed"
 
 # [4] 8 Change Coordinate to A
@@ -239,7 +264,20 @@ def CheckOption(opt):
     else:
         return False
 
-
+# [4] 11 Check around item
+def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
+    if(maze_list[first-1][second] == itemCheck):
+        maze_list[first-1][second] = itemChange
+        return True
+    elif(maze_list[first][second-1] == itemCheck):
+        maze_list[first][second-1] = itemChange
+        return True
+    elif(maze_list[first][second+1] == itemCheck):
+        maze_list[first][second+1] = itemChange
+        return True
+    elif(maze_list[first+1][second] == itemCheck):
+        maze_list[first+1][second] = itemChange
+        return True
 
 
 # MAIN FUNCTION 
