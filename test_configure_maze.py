@@ -5,15 +5,21 @@ import io
 
 maze_normal = [['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'], ['X', 'O', 'O', 'O', 'X', 'O', 'A', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'O', 'O', 'X', 'X'], ['X', 'B', 'X', 'X', 'X', 'X', 'X', 'X']]
 no_maze = []
-coor = "2, 3"
+coor = "2, 3" #Coordinates to an O
 opt = "4"
 optFail = "5"
+#Coordinates to an A
 firstA = 1
 secondA = 6
+#Coordinates to a B
 firstB = 7
 secondB = 1
+
 itemCheck = "X"
 itemChange = "A"
+#Coordinates to a X
+firstX = 0
+secondX = 3
 
 #Check if there is maze, thus display config menu
 def test_ConfigurationOptionMethod():
@@ -82,10 +88,32 @@ def test_ChangeCoordinatetoA():
     statement = "\nChanged coordinate to A"
     assert ChangeCoordToA(maze_normal, coor) == statement
 
+#Checks if selected item (B) to change to A
+def test_ChecksForChangeA():
+    statement = "\n Your end point and start point exchanged places!"
+    assert CheckForChangeA(maze_normal, firstB, secondB) == statement
+
+#Checks if selected item (A) to change to A
+def test_ChecksForChangeA():
+    statement = "\n That is already your start point"
+    assert CheckForChangeA(maze_normal, firstA, secondA) == statement
+
 #Check if item of coordinate 'coor' changes to B
 def test_ChangeCoordinatetoB():
     statement = "\nChanged coordinate to B"
     assert ChangeCoordToB(maze_normal, coor) == statement
+
+#Checks if selected item (A) to change to B
+def test_ChecksForChangeB():
+    statement = "\n Your end point and start point exchanged places!"
+    assert CheckForChangeA(maze_normal, firstA, secondA) == statement
+
+#Checks if selected item (B) to change to B
+def test_ChecksForChangeB():
+    statement = "\n That is already your end point"
+    assert CheckForChangeA(maze_normal, firstB, secondB) == statement
+
+
 
 #Check if option inputted is not less than equal to 0 and more than 4
 def test_CheckOpt():

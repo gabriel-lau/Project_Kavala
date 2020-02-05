@@ -92,6 +92,10 @@ def configure_maze(maze_list):
                 ChangeCoordToX(maze_list, coorOpt)
             elif(option == "2" and coorOpt.isalpha() != True):
                 ChangeCoordToO(maze_list, coorOpt)
+            elif(option == "3" and coorOpt.isalpha() != True):
+                ChangeCoordToA(maze_list, coorOpt)
+            elif(option == "4" and coorOpt.isalpha() != True):
+                ChangeCoordToB(maze_list, coorOpt)
             elif(option != "0" and coorOpt == "B"):
                 returnConfigure(maze_list)
             elif(option != "0" and coorOpt == "M"):
@@ -238,6 +242,7 @@ def CheckForChangeO(maze_list, first, second):
 def ChangeCoordToA(maze_list, coor):
     firstCoor = int(coor[0]) - 1
     secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeA(maze_list, firstCoor, secondCoor))
     print("Changed " + maze_list[firstCoor][secondCoor] + "-> A")
     maze_list[firstCoor][secondCoor] = "A"
     print('\n'.join([str(lst) for lst in maze_list]))
@@ -245,16 +250,44 @@ def ChangeCoordToA(maze_list, coor):
     statement = "\nChanged coordinate to A"
     return statement
 
+# [4] 8.1 Check when changing Coordinate to A
+def CheckForChangeA(maze_list, first, second):
+    item = maze_list[first][second]
+    if(item == "A"):
+        return "\n That is already your start point"
+    elif(item == "B"):
+        for row in maze_list:
+            if("A" in row):
+                #Change the original A to B if B is changed to A
+                index = str(maze_list.index(row)) + ", " + str(row.index("A"))
+                maze_list[int(index[0])][int(index[-1])] = "B"
+                return "\n Your end point and start point exchanged places!"
+        
+        
 # [4] 9 Change Coordinate to B
 def ChangeCoordToB(maze_list, coor):
     firstCoor = int(coor[0]) - 1
     secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeB(maze_list, firstCoor, secondCoor))
     print("Changed " + maze_list[firstCoor][secondCoor] + "-> B")
     maze_list[firstCoor][secondCoor] = "B"
     print('\n'.join([str(lst) for lst in maze_list]))
     print('\n')
     statement = "\nChanged coordinate to B"
     return statement
+
+# [4] 9.1 Check when changing Coordinate to B
+def CheckForChangeB(maze_list, first, second):
+    item = maze_list[first][second]
+    if(item == "B"):
+        return "\n That is already your end point"
+    elif(item == "A"):
+        for row in maze_list:
+            if("B" in row):
+                #Change the original A to B if B is changed to A
+                index = str(maze_list.index(row)) + ", " + str(row.index("B"))
+                maze_list[int(index[0])][int(index[-1])] = "A"
+                return "\n Your end point and start point exchanged places!"
 
 # [4] 10 Check option == 1, 2, 3, 4
 def CheckOption(opt):
@@ -278,6 +311,8 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
     elif(maze_list[first+1][second] == itemCheck):
         maze_list[first+1][second] = itemChange
         return True
+
+
 
 
 # MAIN FUNCTION 
@@ -311,5 +346,5 @@ def main(maze_list):
 # TODO: For some reason there is an error when you try to run the main() function!!!
 #Additionally, since some functions for configure maze require a callback to main(maze_list)
 #They are commented as well
-#main(maze_list)
+main(maze_list)
 
