@@ -14,12 +14,16 @@ def display_menu():
     return menu
 
 
+#############################################################################################################################
+
+
 # [1] Read and load file
 def read_file(maze_list):
     print ("Option [1]: Read and load maze from file")
     print ("==========================================")
     filename = input("Enter the name of the data file: ")
 
+    # Validation checking for filename
     if '.csv' in filename:
         with open (filename) as csv_file:
             csv_reader = csv.reader(csv_file)
@@ -38,6 +42,7 @@ def read_file(maze_list):
     return maze_list
 
 
+# Store the coordinates (row, column) of the start and end points of the maze
 def store_start_end(maze_list):
     for list in maze_list:
         for index, list in enumerate(maze_list):
@@ -56,6 +61,9 @@ def store_start_end(maze_list):
         return row_column_list
 
 
+#############################################################################################################################
+
+
 # [2] Display maze
 def display_maze(maze_list):
     if maze_list == []:
@@ -66,6 +74,9 @@ def display_maze(maze_list):
         print('\n'.join([str(lst) for lst in maze_list]))
 
     return maze_list
+
+
+#############################################################################################################################
 
 
 # [3] Play maze game
@@ -139,6 +150,9 @@ def play_game(maze_list): #Load Maze
         return play_game(maze_list)
 
     #return maze_list
+
+
+#############################################################################################################################
 
 
 # [4] Configure maze
@@ -381,6 +395,7 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
         return True
 
 
+#############################################################################################################################
 
 
 # MAIN FUNCTION 
@@ -412,7 +427,9 @@ def main(maze_list):
             print ("Invalid option. Please try again!")
             
         print()
-# TODO: For some reason there is an error when you try to run the main() function!!!
-#Additionally, since some functions for configure maze require a callback to main(maze_list)
-#They are commented as well
+
+
+# TODO: For some reason there is an error when you try to run the main() function
+# Additionally, since some functions for configure maze require a callback to main(maze_list)
+# They are commented as well
 #main(maze_list)
