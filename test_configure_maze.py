@@ -106,12 +106,12 @@ def test_ChangeCoordinatetoB():
 #Checks if selected item (A) to change to B
 def test_ChecksForChangeB():
     statement = "\n Your end point and start point exchanged places!"
-    assert CheckForChangeA(maze_normal, firstA, secondA) == statement
+    assert CheckForChangeB(maze_normal, firstA, secondA) == statement
 
 #Checks if selected item (B) to change to B
 def test_ChecksForChangeB():
     statement = "\n That is already your end point"
-    assert CheckForChangeA(maze_normal, firstB, secondB) == statement
+    assert CheckForChangeB(maze_normal, firstB, secondB) == statement
 
 
 
