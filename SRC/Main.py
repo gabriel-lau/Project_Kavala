@@ -429,6 +429,10 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
 
 
 #############################################################################################################################
+<<<<<<< HEAD
+=======
+
+>>>>>>> Clean up code
 
 # MAIN FUNCTION 
 def main(maze_list):
