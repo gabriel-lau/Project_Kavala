@@ -74,7 +74,7 @@ def display_maze(maze_list):
 
 # [3] Play maze game
 # ../maze.csv
-def play_game(maze_list):
+def play_game(maze_list): #Load Maze
     for list in maze_list:
         for index, list in enumerate(maze_list):
             if 'A' in list:
@@ -93,20 +93,16 @@ def play_game(maze_list):
         print('\n'.join([str(lst) for lst in maze_list]))
         print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
         print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
-        return False # Comment this line to run the game
     movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
     start_coords = (row_A,column_A)
 
-    #start_coords_formatted = re.split('[()]', start_coords)[1]
-
     if movement == 'M':
-        print("movement is M")
         return main(maze_list)
     elif movement == 'W':
-        if maze_list[start_coords[0]-1][start_coords[1]] == 'B':
+        if maze_list[start_coords[0]-1][start_coords[1]] == 'B': # Check if it is the end
             print("Congrats!")
             quit()
-        if maze_list[start_coords[0]-1][start_coords[1]] == 'O' or maze_list[start_coords[0]-1][start_coords[1]] == 'B':
+        if maze_list[start_coords[0]-1][start_coords[1]] == 'O' or maze_list[start_coords[0]-1][start_coords[1]] == 'B':# Check if it is valid move
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]-1][start_coords[1]] = 'A'
         else:
@@ -143,11 +139,8 @@ def play_game(maze_list):
             print("Invalid move"+"\n")
         return play_game(maze_list)
     else:
-    #elif movement != 'W' or 'A' or 'S' or 'D' or 'M':
         print("Invalid Character. Please try again!")
-        print ("HI")
         return play_game(maze_list)
-        #return movement 
 
     #return maze_list
 
@@ -179,7 +172,6 @@ def main(maze_list):
                 configure_maze()
             elif option == 0:
                 print ("Thanks for playing Maze!")
-                break
                 return False
             else:
                 print ("Invalid option. Please try again!")
