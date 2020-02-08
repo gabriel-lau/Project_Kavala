@@ -219,16 +219,12 @@ def displayconfigure_maze_menu(maze_list):
     if(maze_list == []):
         print("No maze in memory. Load your maze file through Option 1!\n")
         #Have to comment this out when running pytest
-        main(maze_list)
+        #main(maze_list)
         return False
     else:
-        #Display maze list first
-        print("\n")
-        print('\n'.join([str(lst) for lst in maze_list]))
-        print('\n')
         #Display configure maze menu
         Statement =(
-        "CONFIGURATION MENU\n"
+        "\nCONFIGURATION MENU\n"
         "==================\n"
         "[1] Create wall\n"
         "[2] Create passageway\n"
@@ -268,6 +264,7 @@ def returnConfigure(maze_list):
     #Required to comment this out since it has input
     #configure_maze(maze_list)
     return statement
+    configure_maze(maze_list)
     
 # [4] 5 Return to Main menu
 def returnMain(maze_list):
