@@ -5,7 +5,9 @@ import io
 
 maze_normal = [['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'], ['X', 'O', 'O', 'O', 'X', 'O', 'A', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'O', 'O', 'X', 'X'], ['X', 'B', 'X', 'X', 'X', 'X', 'X', 'X']]
 maze_no_start_end = [['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'], ['X', 'O', 'O', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'O', 'O', 'X', 'X'], ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']]
+
 # ==================================================================
+
 # Test for reading files
 
 # Adding a normal maze returns a list with the maze coordinates
@@ -26,6 +28,11 @@ def test_read_maze_empty():
 # Adding a csv file that does not exist returns empty maze_list
 def test_read_csv_no_exist():
     with mock.patch('builtins.input', return_value='fake.csv'):
+        assert read_file([]) == []
+
+# Adding a non-csv file
+def test_read_non_csv():
+    with mock.patch('builtins.input', return_value='maze.jpeg'):
         assert read_file([]) == []
 
 # Check if function store_start_end knows if maze has no start (A) or end (B) point

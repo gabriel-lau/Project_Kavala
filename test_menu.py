@@ -5,9 +5,10 @@ import io
 
 maze_normal = [['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'], ['X', 'O', 'O', 'O', 'X', 'O', 'A', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'O', 'O', 'X', 'X'], ['X', 'B', 'X', 'X', 'X', 'X', 'X', 'X']]
 maze_no_start_end = [['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'], ['X', 'O', 'O', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X'], ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X'], ['X', 'O', 'X', 'O', 'O', 'O', 'X', 'X'], ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']]
-# ==================================================================
-# Test for displaying menu
 
+# ==================================================================
+
+# Test for displaying menu
 def test_display_menu():
     menu = display_menu()
     assert menu == ("MAIN MENU\n" 
@@ -21,13 +22,7 @@ def test_display_menu():
 
 # ==================================================================
 # Test for looping menu
-# TODO: This is for the loop main() function that does NOT work !!!!
-
 def test_looping_menu_exit():
     with mock.patch('builtins.input', return_value='0'):
         assert main([]) == False
 
-# @pytest.mark.parametrize("return_value", [('1'), ('2'), ('3'), ('4')])
-# def test_looping_menu_continue(return_value):
-#     with mock.patch('builtins.input', return_value=return_value):
-#         assert main([]) ==
