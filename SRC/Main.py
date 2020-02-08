@@ -162,7 +162,7 @@ def play_game(maze_list): #Load Maze
 
 # [4] Configure maze
 def configure_maze(maze_list):
-            
+
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
     #Enter option for config menu
