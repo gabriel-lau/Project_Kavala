@@ -270,8 +270,6 @@ def returnConfigure(maze_list):
     #Required to comment this out since it has input
     #configure_maze(maze_list)
     return statement
-    configure_maze(maze_list)
-    return statement
     
 # [4] 5 Return to Main menu
 def returnMain(maze_list):
