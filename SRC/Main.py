@@ -1,4 +1,5 @@
 import csv
+import os.path
 maze_list = []
 
 # Display menu
@@ -22,19 +23,21 @@ def read_file(maze_list):
     filename = input("Enter the name of the data file: ")
 
     if '.csv' in filename:
-        with open (filename) as csv_file:
-            csv_reader = csv.reader(csv_file)
-            for row in csv_reader:
-                maze_list.append(row)
+        if os.path.exists(filename):
+            with open (filename) as csv_file:
+                csv_reader = csv.reader(csv_file)
+                for row in csv_reader:
+                    maze_list.append(row)
 
-        if len(maze_list) != 0:
-            store_start_end(maze_list)
-            print("Number of lines read: ", len(maze_list), "\n")
+            if len(maze_list) != 0:
+                store_start_end(maze_list)
+                print("Number of lines read: ", len(maze_list), "\n")
+            else:
+                print("No maze found in file!\n")
         else:
-            print("No maze found in file!")
-
+            print("CSV file not found!\n")
     else:
-        print("Invalid file type!")
+        print("Invalid file type! Only CSV files accepted.\n")
     
     return maze_list
 
