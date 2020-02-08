@@ -25,7 +25,6 @@ def read_file(maze_list):
     print ("==========================================")
     filename = input("Enter the name of the data file: ")
 
-    # Validation checking for filename
     if '.csv' in filename:
         if os.path.exists(filename):
             with open (filename) as csv_file:
@@ -46,7 +45,6 @@ def read_file(maze_list):
     return maze_list
 
 
-# Store the coordinates (row, column) of the start and end points of the maze
 def store_start_end(maze_list):
     for list in maze_list:
         for index, list in enumerate(maze_list):
@@ -430,6 +428,7 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
 
 #############################################################################################################################
 
+
 # MAIN FUNCTION 
 def main(maze_list):
     while True:
@@ -446,8 +445,7 @@ def main(maze_list):
             elif option == 2:
                 maze_list = display_maze(maze_list)
             elif option == 3:
-                play_game(maze_list)
-                return play_game(maze_list)
+                play_game()
             elif option == 4:
                 configure_maze()
             elif option == 0:
