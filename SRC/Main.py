@@ -90,7 +90,7 @@ def play_game(maze_list): #Load Maze
         print('\n'.join([str(lst) for lst in maze_list]))
         print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
         print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
-    movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
+    movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")).upper() # Movement code
     start_coords = (row_A,column_A)
 
     if movement == 'M':
@@ -98,7 +98,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'W':
         if maze_list[start_coords[0]-1][start_coords[1]] == 'B': # Check if it is the end
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]-1][start_coords[1]] == 'O' or maze_list[start_coords[0]-1][start_coords[1]] == 'B':# Check if it is valid move
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]-1][start_coords[1]] = 'A'
@@ -108,7 +108,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'A':
         if maze_list[start_coords[0]][start_coords[1]-1] == 'B':
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]][start_coords[1]-1] == 'O' or maze_list[start_coords[0]][start_coords[1]-1] == 'B':
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]][start_coords[1]-1] = 'A'
@@ -118,7 +118,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'S':
         if maze_list[start_coords[0]+1][start_coords[1]] == 'B':
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]+1][start_coords[1]] == 'O' or maze_list[start_coords[0]+1][start_coords[1]] == 'B':
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]+1][start_coords[1]] = 'A'
@@ -128,7 +128,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'D':
         if maze_list[start_coords[0]][start_coords[1]+1] == 'B':
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]][start_coords[1]+1] == 'O' or maze_list[start_coords[0]][start_coords[1]+1] == 'B':
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]][start_coords[1]+1] = 'A'
@@ -145,6 +145,217 @@ def play_game(maze_list): #Load Maze
 # [4] Configure maze
 def configure_maze():
     return True
+
+# [4] 1 Display Configure maze menu
+def displayconfigure_maze_menu(maze_list):
+    #When user has not loaded the maze list
+    if(maze_list == []):
+        print("No maze in memory. Load your maze file through Option 1!\n")
+        #Have to comment this out when running pytest
+        #main(maze_list)
+        return False
+    else:
+        #Display configure maze menu
+        Statement =(
+        "\nCONFIGURATION MENU\n"
+        "==================\n"
+        "[1] Create wall\n"
+        "[2] Create passageway\n"
+        "[3] Create start point\n"
+        "[4] Create end point\n\n"
+
+        "[0] Exit to Main Menu\n")
+        print(Statement)
+        return True
+    
+# [4] 2 Display input for when to create item in maze
+def displayConfigureInput(maze_list):
+    #To display the maze list first
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    #Require user to enter coordinate or exit
+    Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
+    "'B' to return to Configure Menu.\n"
+    "'M' to return to Main Menu: ")
+    return Statement
+
+# [4] 3 Exit Config menu
+def exitConfigure():
+    #To exit from config menu
+    statement = "\nExited from Configuration Menu"
+    print(statement)
+    #To run the app again from Main menu
+    #main(maze_list)
+    return statement
+    
+
+# [4] 4 Return to Config menu
+def returnConfigure(maze_list):
+    statement = "\nReturning to configuration menu"
+    print(statement)
+    #To run the app from Configuration menu
+    #Required to comment this out since it has input
+    return statement
+    configure_maze(maze_list)
+    
+
+# [4] 5 Return to Main menu
+def returnMain(maze_list):
+    statement = "\nReturning to Main menu"
+    print(statement)
+    #To run the app again from Main menu
+    #main(maze_list)
+    return statement
+
+# [4] 6 Change Coordinate to X
+def ChangeCoordToX(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeX(maze_list, firstCoor, secondCoor))
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> X")
+    maze_list[firstCoor][secondCoor] = "X"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to X"
+    return statement
+
+# [4] 6.1 Check when changing Coordinate to X
+def CheckForChangeX(maze_list, first, second):
+    item = maze_list[first][second]
+    #when the chosen change is a start/end point
+    if(item == "A" or item == "B"):
+        if(item == "A"):
+            #Look for the nearest O and finding nearest to change to start point
+            #Check if left of A is O
+            if(maze_list[first][second-1] == "O"):
+                CheckAroundItem(first, second - 1, "X", "A", maze_list)
+            #Check if top of A is O
+            elif(maze_list[first-1][second] == "O"):
+                CheckAroundItem(first-1, second, "X", "A", maze_list)
+            #Check if right of A is O
+            elif(maze_list[first][second+1] == "O"):
+                CheckAroundItem(first, second + 1, "X", "A", maze_list)
+            #Check if bot of A is O
+            elif(maze_list[first+1][second] == "O"):
+                CheckAroundItem(first+1, second, "X", "A", maze_list)
+            return "\nThe selected coordinate start point has been changed"
+        else:
+            #Look for the nearest O and finding nearest to change to start point
+            #Check if left of B is O
+            if(maze_list[first][second-1] == "O"):
+                CheckAroundItem(first, second - 1, "X", "B", maze_list)
+            #Check if top of B is O
+            elif(maze_list[first-1][second] == "O"):
+                CheckAroundItem(first-1, second, "X", "B", maze_list)
+            #Check if right of B is O
+            elif(maze_list[first][second+1] == "O"):
+                CheckAroundItem(first, second + 1, "X", "B", maze_list)
+            #Check if bot of B is O
+            elif(maze_list[first+1][second] == "O"):
+                CheckAroundItem(first+1, second + 1, "X", "B", maze_list)
+            return "\nThe selected coordinate end point has been changed"
+
+# [4] 7 Change Coordinate to O
+def ChangeCoordToO(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeO(maze_list, firstCoor, secondCoor))
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> O")
+    maze_list[firstCoor][secondCoor] = "O"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to O"
+    return statement
+
+# [4] 7.1 Check when changing Coordinate to O
+def CheckForChangeO(maze_list, first, second):
+    item = maze_list[first][second]
+    #when the chosen change is a start/end point
+    if(item == "A" or item == "B"):
+        if(item == "A"):
+            #Change the nearest X to start point
+            CheckAroundItem(first, second, "X", "A", maze_list)
+            return "\nThe selected coordinate start point has been changed"
+        else:
+            #Change the nearest X to end point
+            CheckAroundItem(first, second, "X", "B", maze_list)
+            return "\nThe selected coordinate end point has been changed"
+
+# [4] 8 Change Coordinate to A
+def ChangeCoordToA(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeA(maze_list, firstCoor, secondCoor))
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> A")
+    maze_list[firstCoor][secondCoor] = "A"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to A"
+    return statement
+
+# [4] 8.1 Check when changing Coordinate to A
+def CheckForChangeA(maze_list, first, second):
+    item = maze_list[first][second]
+    if(item == "A"):
+        return "\n That is already your start point"
+    elif(item == "B"):
+        for row in maze_list:
+            if("A" in row):
+                #Change the original A to B if B is changed to A
+                index = str(maze_list.index(row)) + ", " + str(row.index("A"))
+                maze_list[int(index[0])][int(index[-1])] = "B"
+                return "\n Your end point and start point exchanged places!"
+        
+        
+# [4] 9 Change Coordinate to B
+def ChangeCoordToB(maze_list, coor):
+    firstCoor = int(coor[0]) - 1
+    secondCoor = int(coor[-1]) - 1
+    print(CheckForChangeB(maze_list, firstCoor, secondCoor))
+    print("Changed " + maze_list[firstCoor][secondCoor] + "-> B")
+    maze_list[firstCoor][secondCoor] = "B"
+    print('\n'.join([str(lst) for lst in maze_list]))
+    print('\n')
+    statement = "\nChanged coordinate to B"
+    return statement
+
+# [4] 9.1 Check when changing Coordinate to B
+def CheckForChangeB(maze_list, first, second):
+    item = maze_list[first][second]
+    if(item == "B"):
+        return "\n That is already your end point"
+    elif(item == "A"):
+        for row in maze_list:
+            if("B" in row):
+                #Change the original A to B if B is changed to A
+                index = str(maze_list.index(row)) + ", " + str(row.index("B"))
+                maze_list[int(index[0])][int(index[-1])] = "A"
+                return "\n Your end point and start point exchanged places!"
+
+# [4] 10 Check option == 1, 2, 3, 4
+def CheckOption(opt):
+    value = int(opt)
+    if(value <=4 and value > 0): 
+        return True
+    else:
+        return False
+
+# [4] 11 Check around item
+def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
+    if(maze_list[first-1][second] == itemCheck):
+        maze_list[first-1][second] = itemChange
+        return True
+    elif(maze_list[first][second-1] == itemCheck):
+        maze_list[first][second-1] = itemChange
+        return True
+    elif(maze_list[first][second+1] == itemCheck):
+        maze_list[first][second+1] = itemChange
+        return True
+    elif(maze_list[first+1][second] == itemCheck):
+        maze_list[first+1][second] = itemChange
+        return True
+
+
 
 
 # MAIN FUNCTION 
@@ -163,8 +374,7 @@ def main(maze_list):
             elif option == 2:
                 maze_list = display_maze(maze_list)
             elif option == 3:
-                play_game(maze_list)
-                return play_game(maze_list)
+                play_game()
             elif option == 4:
                 configure_maze()
             elif option == 0:
@@ -176,6 +386,8 @@ def main(maze_list):
             print ("Invalid option. Please try again!")
             
         print()
-
 # TODO: For some reason there is an error when you try to run the main() function!!!
+#Additionally, since some functions for configure maze require a callback to main(maze_list)
+#They are commented as well
 #main(maze_list)
+
