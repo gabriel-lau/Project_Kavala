@@ -161,13 +161,6 @@ def play_game(maze_list): #Load Maze
 
 # [4] Configure maze
 def configure_maze(maze_list):
-    rlen = 0
-    clen = 0
-    #To check highest num of coordinates
-    for row in maze_list:
-        rlen += 1
-    for col in maze_list[0]:
-        clen += 1
             
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
@@ -177,6 +170,14 @@ def configure_maze(maze_list):
     #if users choose to exit to main menu
     if(option == "0"):
         exitConfigure()
+
+    #To check highest num of coordinates
+    rlen = 0
+    clen = 0
+    for row in maze_list:
+        rlen += 1
+    for col in maze_list[0]:
+        clen += 1    
     #if users do not exit to main menu
     else:
         #To check if user does not input more than "4" or less than equal to 0
