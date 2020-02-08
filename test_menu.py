@@ -22,7 +22,6 @@ def test_display_menu():
 # ==================================================================
 # Test for looping menu
 # TODO: This is for the loop main() function that does NOT work !!!!
-
 def test_looping_menu_exit():
     with mock.patch('builtins.input', return_value='0'):
         assert main([]) == False
