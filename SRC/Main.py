@@ -14,14 +14,12 @@ def display_menu():
     return menu
 
 
-
 # [1] Read and load file
 def read_file(maze_list):
     print ("Option [1]: Read and load maze from file")
     print ("==========================================")
     filename = input("Enter the name of the data file: ")
 
-    # Validation checking for filename
     if '.csv' in filename:
         with open (filename) as csv_file:
             csv_reader = csv.reader(csv_file)
@@ -40,7 +38,6 @@ def read_file(maze_list):
     return maze_list
 
 
-# Store the coordinates (row, column) of the start and end points of the maze
 def store_start_end(maze_list):
     for list in maze_list:
         for index, list in enumerate(maze_list):
@@ -59,8 +56,6 @@ def store_start_end(maze_list):
         return row_column_list
 
 
-
-
 # [2] Display maze
 def display_maze(maze_list):
     if maze_list == []:
@@ -73,80 +68,9 @@ def display_maze(maze_list):
     return maze_list
 
 
-
-
 # [3] Play maze game
-# ../maze.csv
-def play_game(maze_list): #Load Maze
-    for list in maze_list:
-        for index, list in enumerate(maze_list):
-            if 'A' in list:
-                row_A = index 
-                column_A = maze_list[index].index('A') 
-            if 'B' in list:
-                row_B = index 
-                column_B = maze_list[index].index('B') 
-                
-
-    if maze_list == []:
-        print("No maze in memory. Load your maze file through Option 1!")
-    else:    
-        print ("Option [3]: Play maze game")
-        print ("==========================================")
-        print('\n'.join([str(lst) for lst in maze_list]))
-        print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
-        print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
-    movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
-    start_coords = (row_A,column_A)
-
-    if movement == 'M':
-        return main(maze_list)
-    elif movement == 'W':
-        if maze_list[start_coords[0]-1][start_coords[1]] == 'B': # Check if it is the end
-            print("Congrats!")
-            quit()
-        if maze_list[start_coords[0]-1][start_coords[1]] == 'O' or maze_list[start_coords[0]-1][start_coords[1]] == 'B':# Check if it is valid move
-            maze_list[start_coords[0]][start_coords[1]] = 'O'
-            maze_list[start_coords[0]-1][start_coords[1]] = 'A'
-        else:
-            print("Invalid move"+"\n")
-        return play_game(maze_list)
-    elif movement == 'A':
-        if maze_list[start_coords[0]][start_coords[1]-1] == 'B':
-            print("Congrats!")
-            quit()
-        if maze_list[start_coords[0]][start_coords[1]-1] == 'O' or maze_list[start_coords[0]][start_coords[1]-1] == 'B':
-            maze_list[start_coords[0]][start_coords[1]] = 'O'
-            maze_list[start_coords[0]][start_coords[1]-1] = 'A'
-        else:
-            print("Invalid move"+"\n")
-        return play_game(maze_list)
-    elif movement == 'S':
-        if maze_list[start_coords[0]+1][start_coords[1]] == 'B':
-            print("Congrats!")
-            quit()
-        if maze_list[start_coords[0]+1][start_coords[1]] == 'O' or maze_list[start_coords[0]+1][start_coords[1]] == 'B':
-            maze_list[start_coords[0]][start_coords[1]] = 'O'
-            maze_list[start_coords[0]+1][start_coords[1]] = 'A'
-        else:
-            print("Invalid move"+"\n")
-        return play_game(maze_list)
-    elif movement == 'D':
-        if maze_list[start_coords[0]][start_coords[1]+1] == 'B':
-            print("Congrats!")
-            quit()
-        if maze_list[start_coords[0]][start_coords[1]+1] == 'O' or maze_list[start_coords[0]][start_coords[1]+1] == 'B':
-            maze_list[start_coords[0]][start_coords[1]] = 'O'
-            maze_list[start_coords[0]][start_coords[1]+1] = 'A'
-        else:
-            print("Invalid move"+"\n")
-        return play_game(maze_list)
-    else:
-        print("Invalid Character. Please try again!")
-        return play_game(maze_list)
-
-    #return maze_list
-
+def play_game():
+    return True
 
 
 # [4] Configure maze
@@ -412,6 +336,7 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
 
 
 
+
 # MAIN FUNCTION 
 def main(maze_list):
     while True:
@@ -428,8 +353,7 @@ def main(maze_list):
             elif option == 2:
                 maze_list = display_maze(maze_list)
             elif option == 3:
-                play_game(maze_list)
-                return play_game(maze_list)
+                play_game()
             elif option == 4:
                 configure_maze(maze_list)  
             elif option == 0:
@@ -444,6 +368,5 @@ def main(maze_list):
 # TODO: For some reason there is an error when you try to run the main() function!!!
 #Additionally, since some functions for configure maze require a callback to main(maze_list)
 #They are commented as well
-#main(maze_list)
-
+main(maze_list)
 
