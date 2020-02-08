@@ -31,7 +31,7 @@ def test_ConfigurationOptionMethodFailed():
 
 #Check once user input to change to a selected maze item, this statement displays
 def test_ConfigurationOptionsSelected():
-    Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
+    Statement = ("Enter the coordinate of the item you wish to change E.g. Row,Column\n"
     "'B' to return to Configure Menu.\n"
     "'M' to return to Main Menu: ")
     assert displayConfigureInput(maze_normal) == Statement

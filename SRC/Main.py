@@ -219,7 +219,7 @@ def displayconfigure_maze_menu(maze_list):
     if(maze_list == []):
         print("No maze in memory. Load your maze file through Option 1!\n")
         #Have to comment this out when running pytest
-        main(maze_list)
+        #main(maze_list)
         return False
     else:
         #Display maze list first
@@ -257,7 +257,7 @@ def exitConfigure():
     print(statement)
     #To run the app again from Main menu
     #Required to comment this out since it has input
-    main(maze_list)
+    #main(maze_list)
     return statement
     
 
@@ -267,7 +267,7 @@ def returnConfigure(maze_list):
     print(statement)
     #To run the app from Configuration menu
     #Required to comment this out since it has input
-    configure_maze(maze_list)
+    #configure_maze(maze_list)
     return statement
     
 
@@ -277,7 +277,7 @@ def returnMain(maze_list):
     print(statement)
     #To run the app again from Main menu
     #Required to comment this out since it has input
-    main(maze_list)
+    #main(maze_list)
     return statement
 
 # [4] 6 Change Coordinate to X
