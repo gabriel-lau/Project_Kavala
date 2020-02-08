@@ -75,14 +75,6 @@ def play_game():
 
 # [4] Configure maze
 def configure_maze(maze_list):
-    rlen = 0
-    clen = 0
-    #To check highest num of coordinates
-    for row in maze_list:
-        rlen += 1
-    for col in maze_list[0]:
-            clen += 1
-            
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
     #Enter option for config menu
@@ -96,26 +88,18 @@ def configure_maze(maze_list):
         #To check if user does not input more than "4" or less than equal to 0
         if(CheckOption(option)):
             coorOpt = input(displayConfigureInput(maze_list))
-            if((len(coorOpt) == 4 or 3) and (0 < int(coorOpt[0]) <= rlen and 0 < int(coorOpt[-1]) <= clen)):
-                if(option == "1" and coorOpt.isalpha() != True):
-                    ChangeCoordToX(maze_list, coorOpt)
-                elif(option == "2" and coorOpt.isalpha() != True):
-                    ChangeCoordToO(maze_list, coorOpt)
-                elif(option == "3" and coorOpt.isalpha() != True):
-                    ChangeCoordToA(maze_list, coorOpt)
-                elif(option == "4" and coorOpt.isalpha() != True):
-                    ChangeCoordToB(maze_list, coorOpt)
-
-                else:
-                    print("Please provide correct inputs!\n")
-            elif(coorOpt == "B" or coorOpt == "M"):
-                if(option != "0" and coorOpt == "B"):
-                    returnConfigure(maze_list)
-                elif(option != "0" and coorOpt == "M"):
-                    returnMain(maze_list)
-            else:
-                print("Please provide correct coordinates of the item you wish to change!\n"
-                      "This might look like a game but its not!")
+            if(option == "1" and coorOpt.isalpha() != True):
+                ChangeCoordToX(maze_list, coorOpt)
+            elif(option == "2" and coorOpt.isalpha() != True):
+                ChangeCoordToO(maze_list, coorOpt)
+            elif(option == "3" and coorOpt.isalpha() != True):
+                ChangeCoordToA(maze_list, coorOpt)
+            elif(option == "4" and coorOpt.isalpha() != True):
+                ChangeCoordToB(maze_list, coorOpt)
+            elif(option != "0" and coorOpt == "B"):
+                returnConfigure(maze_list)
+            elif(option != "0" and coorOpt == "M"):
+                returnMain(maze_list)
                 
     return True
 
@@ -125,16 +109,12 @@ def displayconfigure_maze_menu(maze_list):
     if(maze_list == []):
         print("No maze in memory. Load your maze file through Option 1!\n")
         #Have to comment this out when running pytest
-        main(maze_list)
+        #main(maze_list)
         return False
     else:
-        #Display maze list first
-        print("\n")
-        print('\n'.join([str(lst) for lst in maze_list]))
-        print('\n')
         #Display configure maze menu
         Statement =(
-        "CONFIGURATION MENU\n"
+        "\nCONFIGURATION MENU\n"
         "==================\n"
         "[1] Create wall\n"
         "[2] Create passageway\n"
@@ -162,8 +142,7 @@ def exitConfigure():
     statement = "\nExited from Configuration Menu"
     print(statement)
     #To run the app again from Main menu
-    #Required to comment this out since it has input
-    main(maze_list)
+    #main(maze_list)
     return statement
     
 
@@ -173,8 +152,8 @@ def returnConfigure(maze_list):
     print(statement)
     #To run the app from Configuration menu
     #Required to comment this out since it has input
-    configure_maze(maze_list)
     return statement
+    configure_maze(maze_list)
     
 
 # [4] 5 Return to Main menu
@@ -182,8 +161,7 @@ def returnMain(maze_list):
     statement = "\nReturning to Main menu"
     print(statement)
     #To run the app again from Main menu
-    #Required to comment this out since it has input
-    main(maze_list)
+    #main(maze_list)
     return statement
 
 # [4] 6 Change Coordinate to X
@@ -368,5 +346,5 @@ def main(maze_list):
 # TODO: For some reason there is an error when you try to run the main() function!!!
 #Additionally, since some functions for configure maze require a callback to main(maze_list)
 #They are commented as well
-main(maze_list)
+#main(maze_list)
 
