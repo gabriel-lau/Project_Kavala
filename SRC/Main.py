@@ -423,7 +423,6 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
 
 #############################################################################################################################
 
-
 # MAIN FUNCTION 
 def main(maze_list):
     while True:
@@ -459,6 +458,7 @@ def main(maze_list):
 # TODO: For some reason there is an error when you try to run the main() function!!!
 #Additionally, since some functions for configure maze require a callback to main(maze_list)
 #They are commented as well
+<<<<<<< HEAD
 #main(maze_list)
 
 >>>>>>> Fixing issues
@@ -466,4 +466,6 @@ def main(maze_list):
 # TODO: For some reason there is an error when you try to run the main() function
 # Additionally, since some functions for configure maze require a callback to main(maze_list)
 # They are commented as well
+=======
+>>>>>>> Fixing issues
 #main(maze_list)
