@@ -167,7 +167,7 @@ def configure_maze(maze_list):
     for row in maze_list:
         rlen += 1
     for col in maze_list[0]:
-            clen += 1
+        clen += 1
             
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
@@ -182,18 +182,25 @@ def configure_maze(maze_list):
         #To check if user does not input more than "4" or less than equal to 0
         if(CheckOption(option)):
             coorOpt = input(displayConfigureInput(maze_list))
-            if((len(coorOpt) == 4 or 3) and (0 < int(coorOpt[0]) <= rlen and 0 < int(coorOpt[-1]) <= clen)):
-                if(option == "1" and coorOpt.isalpha() != True):
-                    ChangeCoordToX(maze_list, coorOpt)
-                elif(option == "2" and coorOpt.isalpha() != True):
-                    ChangeCoordToO(maze_list, coorOpt)
-                elif(option == "3" and coorOpt.isalpha() != True):
-                    ChangeCoordToA(maze_list, coorOpt)
-                elif(option == "4" and coorOpt.isalpha() != True):
-                    ChangeCoordToB(maze_list, coorOpt)
-
+            if(len(coorOpt) > 1): #Means its a coordinate
+                firstnum = 0
+                secondnum = 0
+                try:
+                    firstnum = int(coorOpt[0])
+                    secondnum = int(coorOpt[-1])
+                except:
+                    pass
+                if((len(coorOpt) == 3) and (0 < int(firstnum) <= rlen and 0 < int(secondnum) <= clen)):
+                    if(option == "1" and coorOpt.isalpha() != True):
+                        ChangeCoordToX(maze_list, coorOpt)
+                    elif(option == "2" and coorOpt.isalpha() != True):
+                        ChangeCoordToO(maze_list, coorOpt)
+                    elif(option == "3" and coorOpt.isalpha() != True):
+                        ChangeCoordToA(maze_list, coorOpt)
+                    elif(option == "4" and coorOpt.isalpha() != True):
+                        ChangeCoordToB(maze_list, coorOpt)
                 else:
-                    print("Please provide correct inputs!\n")
+                    print("Please provide correct inputs of coordinate make sure it is in this form: row,column\n")
             elif(coorOpt == "B" or coorOpt == "M"):
                 if(option != "0" and coorOpt == "B"):
                     returnConfigure(maze_list)
@@ -201,7 +208,7 @@ def configure_maze(maze_list):
                     returnMain(maze_list)
             else:
                 print("Please provide correct coordinates of the item you wish to change!\n"
-                      "This might look like a game but its not!")
+                    "This might look like a game but its not!")
                 
     return True
 
@@ -237,7 +244,7 @@ def displayConfigureInput(maze_list):
     print('\n'.join([str(lst) for lst in maze_list]))
     print('\n')
     #Require user to enter coordinate or exit
-    Statement = ("Enter the coordinate of the item you wish to change E.g. Row, Column\n"
+    Statement = ("Enter the coordinate of the item you wish to change E.g. Row,Column\n"
     "'B' to return to Configure Menu.\n"
     "'M' to return to Main Menu: ")
     return Statement
@@ -453,19 +460,8 @@ def main(maze_list):
             print ("Invalid option. Please try again!")
             
         print()
-<<<<<<< HEAD
-=======
-# TODO: For some reason there is an error when you try to run the main() function!!!
-#Additionally, since some functions for configure maze require a callback to main(maze_list)
-#They are commented as well
-<<<<<<< HEAD
-#main(maze_list)
-
->>>>>>> Fixing issues
 
 # TODO: For some reason there is an error when you try to run the main() function
 # Additionally, since some functions for configure maze require a callback to main(maze_list)
 # They are commented as well
-=======
->>>>>>> Fixing issues
-#main(maze_list)
+main(maze_list)
