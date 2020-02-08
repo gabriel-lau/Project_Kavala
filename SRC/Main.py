@@ -221,7 +221,7 @@ def displayconfigure_maze_menu(maze_list):
     if(maze_list == []):
         print("No maze in memory. Load your maze file through Option 1!\n")
         #Have to comment this out when running pytest
-        #main(maze_list)
+        main(maze_list)
         return False
     else:
         #Display maze list first
@@ -429,10 +429,6 @@ def CheckAroundItem(first, second, itemCheck, itemChange, maze_list):
 
 
 #############################################################################################################################
-<<<<<<< HEAD
-=======
-
->>>>>>> Clean up code
 
 # MAIN FUNCTION 
 def main(maze_list):
