@@ -25,7 +25,7 @@ secondX = 3
 def test_ConfigurationOptionMethod():
     assert displayconfigure_maze_menu(maze_normal) == True
 
-#Check if there is no maze (Failing test case)
+#Check if there is no maze
 def test_ConfigurationOptionMethodFailed():
     assert displayconfigure_maze_menu(no_maze) == False
 
