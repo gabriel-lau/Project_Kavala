@@ -105,7 +105,7 @@ def play_game(maze_list): #Load Maze
         print('\n''Location of Start (A) = ' + '(Row ' + str(row_A) + ', Column ' + str(column_A) +')') # Printing out location
         print('\n''Location of Start (B) = ' + '(Row ' + str(row_B) + ', Column ' + str(column_B) +')')
     
-    movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")) # Movement code
+    movement = input(str('\n'"Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN MENU: ")).upper() # Movement code
     start_coords = (row_A,column_A)
 
     if movement == 'M':
@@ -113,7 +113,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'W':
         if maze_list[start_coords[0]-1][start_coords[1]] == 'B': # Check if it is the end
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]-1][start_coords[1]] == 'O' or maze_list[start_coords[0]-1][start_coords[1]] == 'B':# Check if it is valid move
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]-1][start_coords[1]] = 'A'
@@ -123,7 +123,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'A':
         if maze_list[start_coords[0]][start_coords[1]-1] == 'B':
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]][start_coords[1]-1] == 'O' or maze_list[start_coords[0]][start_coords[1]-1] == 'B':
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]][start_coords[1]-1] = 'A'
@@ -133,7 +133,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'S':
         if maze_list[start_coords[0]+1][start_coords[1]] == 'B':
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]+1][start_coords[1]] == 'O' or maze_list[start_coords[0]+1][start_coords[1]] == 'B':
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]+1][start_coords[1]] = 'A'
@@ -143,7 +143,7 @@ def play_game(maze_list): #Load Maze
     elif movement == 'D':
         if maze_list[start_coords[0]][start_coords[1]+1] == 'B':
             print("Congrats!")
-            quit()
+            return main(maze_list)
         if maze_list[start_coords[0]][start_coords[1]+1] == 'O' or maze_list[start_coords[0]][start_coords[1]+1] == 'B':
             maze_list[start_coords[0]][start_coords[1]] = 'O'
             maze_list[start_coords[0]][start_coords[1]+1] = 'A'
@@ -162,7 +162,7 @@ def play_game(maze_list): #Load Maze
 
 # [4] Configure maze
 def configure_maze(maze_list):
-            
+
     #To Display configuring maze menu
     displayconfigure_maze_menu(maze_list)
     #Enter option for config menu
