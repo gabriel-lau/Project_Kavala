@@ -125,5 +125,5 @@ def test_CheckOptFail():
 
 #Check around a maze item function
 #itemCheck = item to find around the coordinated item
-def test_CheckAroundMazeItem():
-    assert CheckAroundItem(firstA, secondA, itemCheck, itemChange, maze_normal) == True
+'''def test_CheckAroundMazeItem():
+    assert CheckAroundItem(firstA, secondA, itemCheck, itemChange, maze_normal)''' == True
